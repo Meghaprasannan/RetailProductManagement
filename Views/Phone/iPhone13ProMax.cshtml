@@ -1,0 +1,110 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    Layout = "_Layout";
+}
+<style>
+</style>
+<br>
+<br>
+<br>
+<br>
+<div class="text-center">
+    <h1>IPHONE 13 Series</h1>
+    <br>
+
+</div>
+<div style="height:1500px;background-color:white;border-radius:30px; padding-top:30px">
+    <div class="container" style="height: 600px;">
+        <div id="zoom-img-iphone13promax" style=" width:700px; height: 460px; ">
+        </div>
+        <div class="container" style=" width:380px; height: 450px; float:left">
+            <br />
+            <h2 class="text-center">
+                IPHONE 13 Pro Max
+            </h2>
+
+            <small class="text-muted text-center">Experience the new Era</small>
+            <p class="lead">
+                Apple Engineered Smartphone with<br />
+                Unrecognizable Hinges & Infinity Curved Display
+            </p>
+            <ul>
+                <li><b>RAM | ROM:</b> 8 GB | 512 GB</li>
+                <li><b>Processor:</b> A15 Bionic Chip</li>
+                <li><b>Rear Camera:</b> 12MP+12MP+12MP</li>
+                <li><b>Front Camera:</b> 12MP</li>
+                <li><b>Display:</b> 6.7 inches</li>
+                <li><b>Battery:</b> 5000mAh</li>
+            </ul>
+            <br />
+            <p style="color:red">Hurry only few units left!</p>
+            <div style="float:left"><span class="badge bg-primary">Extra 15% off</span><h3>Rs 139900</h3></div>
+            <div style="float:right">
+                @using (@Html.BeginForm("IPhone13ProMax", "Phone", FormMethod.Post))
+                {
+
+                <div>
+                    @Html.TextBox("Search", "", new { @type = "number" })
+                    <p>Enter 6 Digit ZipCode</p>
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="Search" style="width:100%">ADD TO CART</button>
+
+
+                    @*<form class="d-flex" style="padding-left:0px; padding-right:50px; padding-top:0px">
+            <input class="form-control me-sm-2" type="text" placeholder="Search" style="height: 20px; border-top-left-radius: 10px; border-bottom-right-radius: 10px; width: 300px; font-size: smaller ">
+        </form>*@
+                </div>
+
+                }
+                @*<button type="button" class="btn btn-outline-primary" style="text-align:center">Buy Now</button>*@
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var addZoom = function (target) {
+            // (A) FETCH CONTAINER + IMAGE
+            var container = document.getElementById(target),
+                imgsrc = container.currentStyle || window.getComputedStyle(container, false),
+                imgsrc = imgsrc.backgroundImage.slice(4, -1).replace(/"/g, ""),
+                img = new Image();
+
+            // (B) LOAD IMAGE + ATTACH ZOOM
+            img.src = imgsrc;
+            img.onload = function () {
+                var imgWidth = img.naturalWidth,
+                    imgHeight = img.naturalHeight,
+                    ratio = imgHeight / imgWidth,
+                    percentage = ratio * 100 + '%';
+
+                // (C) ZOOM ON MOUSE MOVE
+                container.onmousemove = function (e) {
+                    var boxWidth = container.clientWidth,
+                        rect = e.target.getBoundingClientRect(),
+                        xPos = e.clientX - rect.left,
+                        yPos = e.clientY - rect.top,
+                        xPercent = xPos / (boxWidth / 100) + "%",
+                        yPercent = yPos / ((boxWidth * ratio) / 100) + "%";
+
+                    Object.assign(container.style, {
+                        backgroundPosition: xPercent + ' ' + yPercent,
+                        backgroundSize: imgWidth + 'px'
+                    });
+                };
+
+                // (D) RESET ON MOUSE LEAVE
+                container.onmouseleave = function (e) {
+                    Object.assign(container.style, {
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover'
+                    });
+                };
+            }
+        };
+
+        window.addEventListener("load", function () {
+            addZoom("zoom-img-iphone13promax");
+        });</script>

@@ -1,0 +1,82 @@
+﻿@model iStore.ViewModel.OverallViewModel
+@{
+    Layout = "_Layout";
+    double total = 0;
+    int units = 0;
+    List<int> vendors = new List<int> { 1, 5, 2, 3, 6, 8, 7, 4, 2, 6, 8, 5, 1, 7, 3, 5, 2, 6, 4, 7, 8, 5, 1, 2, 6, 4, 8, 5, 2, 1, 6, 7, 8, 6, 8, 1, 4, 7, 6, 5, 8, 1, 4, 7, 6, 8, 5, 1, 7, 5 , 1, 5, 2, 3, 6, 8, 7, 4, 2, 6, 8, 5, 1, 7, 3, 5, 2, 6, 4, 7, 8, 5, 1, 2, 6, 4, 8, 5, 2, 1, 6, 7, 8, 6, 8, 1, 4, 7, 6, 5, 8, 1, 4, 7, 6, 8, 5, 1, 7, 5, 1, 5, 2, 3, 6, 8, 7, 4, 2, 6, 8, 5, 1, 7, 3, 5, 2, 6, 4, 7, 8, 5, 1, 2, 6, 4, 8, 5, 2, 1, 6, 7, 8, 6, 8, 1, 4, 7, 6, 5, 8, 1, 4, 7, 6, 8, 5, 1, 7, 5, 1, 5, 2, 3, 6, 8, 7, 4, 2, 6, 8, 5, 1, 7, 3, 5, 2, 6, 4, 7, 8, 5, 1, 2, 6, 4, 8, 5, 2, 1, 6, 7, 8, 6, 8, 1, 4, 7, 6, 5, 8, 1, 4, 7, 6, 8, 5, 1, 7, 5, 1, 5, 2, 3, 6, 8, 7, 4, 2, 6, 8, 5, 1, 7, 3, 5, 2, 6, 4, 7, 8, 5, 1, 2, 6, 4, 8, 5, 2, 1, 6, 7, 8, 6, 8, 1, 4, 7, 6, 5, 8, 1, 4, 7, 6, 8, 5, 1, 7, 5 };
+}
+<style>
+
+</style>
+
+
+<br />
+<div class="text-center">
+    <br /><br />
+    <h1>ORDERS</h1>
+    <p>Your orders are on the Way!</p>
+    <p style="color:green">You can find Delivery Dates here</p>
+    <table class="table table-hover" style="margin-top:2%;margin-bottom:500px">
+        <thead>
+            <tr>
+                <th scope="col" class="table-dark">Id</th>
+                <th scope="col" class="table-dark">Product Name</th>
+                <th scope="col" class="table-dark">Description</th>
+                <th scope="col" class="table-dark">Price</th>
+                <th scope="col" class="table-dark">Delivery Dates</th>
+                <th scope="col" class="table-dark">Vendor Assigned</th>
+                <th scope="col" class="table-dark">@*Add Ratings*@</th>
+                @*<th scope="col" class="table-dark">Action</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cart in Model.carts)
+            {
+
+
+                @if (cart.CustomerId == User.Identity.Name)
+                {
+                    @foreach (var product in Model.products)
+                    {
+                        @if (cart.ProductId == product.Id)
+                        {
+
+
+                            <tr class="table-primary">
+                                <td scope="row">@product.Id</td>
+                                <th><a class="nav-link" asp-action="@product.Name" asp-controller="Phone"> @product.Name</a></th>
+                                <td>@product.Description</td>
+                                <td>@product.Price</td>
+                                <th style="color:green">@cart.DeliveryDate</th>
+                                @foreach (var vendor in Model.vendors)
+                                {
+                                    if (vendors[units] == vendor.Id)
+                                    {
+                                        <td>@vendor.VendorName</td>
+                                    }
+                                }
+                                <td>
+                                </td>
+                            </tr>
+
+                            @if (true)
+                            {
+                                total = total + product.Price;
+                                units = units + 1;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+
+
+        </tbody>
+
+    </table>
+    <p></p>
+    <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back to Home</a>
+</div>
+
+

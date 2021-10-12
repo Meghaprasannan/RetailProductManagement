@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@*@using Microsoft.AspNetCore.Identity*@
+@model IEnumerable<iStore.Models.Product>
+@{ Layout = "_Layout"; }
+@*<p>@User.Identity.Name</p>*@
+
+@{
+    ViewData["Title"] = "Search";
+}
+<br />
+<br />
+<br />
+
+
+
+@using (@Html.BeginForm("Search", "Home", FormMethod.Get))
+{
+
+    <div>
+        <b style="padding-right:2%">Search Option:</b>
+        @Html.RadioButton("option", "Name")<text style="padding-right:2%">NAME</text>
+        @Html.RadioButton("option", "Id")<text style="padding-right:2%">ID</text>
+
+        @Html.TextBox("Search")
+        <button @*asp-action="ProductById" asp-controller="Home" asp-route-Id=Search *@="btn btn-primary my-2 my-sm-0" type="submit" name="submit" value="Search" style="height:30px;width:30px;border-radius:10%; padding-top:0px; padding-left:5px; padding-right:5px; margin-top:0"><img src="~/pngaaa.com-5014425.png" style="height:14px;width:14px"></button>
+
+
+        @*<form class="d-flex" style="padding-left:0px; padding-right:50px; padding-top:0px">
+                <input class="form-control me-sm-2" type="text" placeholder="Search" style="height: 20px; border-top-left-radius: 10px; border-bottom-right-radius: 10px; width: 300px; font-size: smaller ">
+            </form>*@
+    </div>
+
+}
+
+
+<br />
+<br />
+<h1 class="text-center">Product List</h1>
+<br />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col" class="table-dark">Id</th>
+            <th scope="col" class="table-dark">Product Name</th>
+            <th scope="col" class="table-dark">Description</th>
+            <th scope="col" class="table-dark">Rating</th>
+            <th scope="col" class="table-dark">Price</th>
+            <th scope="col" class="table-dark">Action</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+
+        @if (Model.Count() == 0)
+        {
+            <tr><td><h4>No Records Found</h4></td></tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+    <tr class="table-primary">
+        <td scope="row">@item.Id</td>
+        <th><a class="nav-link" asp-action="@item.Name" asp-controller="Phone"> @item.Name</a></th>
+        <td>@item.Description</td>
+        <th style="color:green">@item.Rating</th>
+        <th>@item.Price</th>
+        <td>
+            <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="Phone" asp-route-id="@item.Name" asp-action="@item.Name">View</a>
+            @*<button class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="Phone" asp-route-id="@item.Name">View</button>*@
+        </td>
+    </tr>
+            }
+        }
+    </tbody>
+</table>

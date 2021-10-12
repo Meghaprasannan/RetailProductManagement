@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "_NoLayout";
+}
+<br />
+<br />
+<br />
+<div class="view" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/architecture.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-gradient align-items-center" style="padding-left:10%">
+        <!-- Content -->
+        <div class="container">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-6 box secondary-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" style="background-color: black;opacity: 0.6; margin-top:0;margin-bottom:0;border-radius:30px" data-wow-delay="0.3s">
+                    <h2 style="color:white;padding-top:45px">Make purchases with our app </h2>
+                    <hr class="hr-light">
+                    <h6 style="color:white">
+                        Apple Inc. is an American multinational technology<br>
+                        company that specializes in consumer electronics, <br>
+                        computer software, and online services. Apple is <br>
+                        the world's most valuable company.<br>
+                        
+
+                    </h6>
+                    <img src="~/apple logo.gif" style="height:180px;width:150px"/>
+                    <br>
+                    <br>
+                    <a class="btn btn-outline-light" style="border-radius:10px" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Login</a>
+                    <a class="btn btn-outline-light" style="border-radius:10px">Learn more</a>
+                    <br> <div style="color:white"> <small class="font-weight-bold">Don't have an account? <a  asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@Url.Action("Register", "Login", new { area = "" })" class="text-danger ">Register</a></small> </div>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-6 col-xl-5 mt-xl-5 wow fadeInRight" data-wow-delay="0.3s">
+                    <img src="https://mdbootstrap.com/img/Mockups/Transparent/Small/admin-new.png" alt="" class="img-fluid">
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+</div>

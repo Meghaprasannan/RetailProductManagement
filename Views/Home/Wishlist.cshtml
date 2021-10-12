@@ -1,0 +1,138 @@
+﻿@model iStore.ViewModel.OverallViewModel
+@{
+    Layout = "_Layout";
+}
+<style>
+
+    
+</style>
+@*
+    <div class="card">
+        <div class="row">
+            <div class="col-md-8 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col">
+                            <h4><b>Shopping Cart</b></h4>
+                        </div>
+                        <div class="col align-self-center text-right text-muted">3 items</div>
+                    </div>
+                </div>
+                <div class="row border-top border-bottom">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img class="img-fluid" style="width: 3.5rem" src="~/images/Icons/phoneIcon.jpg"></div>
+                        <div class="col">
+                            <div class="row text-muted">Product</div>
+                            <div class="row">iPhone 12 Pro Max</div>
+                        </div>
+                        <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+                        <div class="col">Rs 49900.00 <span class="close">&#10005;</span></div>
+                    </div>
+                </div>
+
+
+                <div class="nav-link"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">&leftarrow;<span class="text-muted">Back to shop</span></a></div>
+            </div>
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>Summary</b></h5>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">ITEMS 1</div>
+                    <div class="col text-right">Rs 49900</div>
+                </div>
+                <form>
+                    <p>SHIPPING</p> <select>
+                        <option class="text-muted">Standard-Delivery- Rs 50</option>
+                    </select>
+                    <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
+                </form>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col">TOTAL PRICE</div>
+                    <div class="col text-right">Rs 49950</div>
+                </div> <button class="btn" style="background-color: #000; border-color: #000; color: white; width: 100%; font-size: 0.7rem; margin-top: 4vh; padding: 1vh; border-radius: 0">CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+*@
+<br />
+    <br /><br />
+    <h1>Wishlist</h1>
+    <p>Great Choice! <br /><b>But We Don't have this product in stock now.</b></p>
+    <table class="table table-hover" style="margin-top:2%;margin-bottom:500px">
+        <thead>
+            <tr>
+                <th scope="col" class="table-dark">Id</th>
+                <th scope="col" class="table-dark">Product Name</th>
+                <th scope="col" class="table-dark">Description</th>
+                <th scope="col" class="table-dark">Price</th>
+                <th scope="col" class="table-dark">Date Added</th>
+                <th scope="col" class="table-dark">Quantity</th>
+                <th scope="col" class="table-dark">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var wish in Model.wishlists)
+            {
+
+
+                @if (wish.CustomerId == User.Identity.Name)
+                {
+                    @foreach (var product in Model.products)
+                    {
+                        @if (wish.ProductId == product.Id)
+                        {
+
+
+                            <tr class="table-primary">
+                                <td scope="row">@product.Id</td>
+                                <th><a class="nav-link" asp-action="@product.Name" asp-controller="Phone"> @product.Name</a></th>
+                                <td>@product.Description</td>
+                                <th>@product.Price</th>
+                                <td>@wish.DateAddedToWishlist</td>
+                                <th>@wish.Quantity</th>
+                                <td><a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="Home" asp-route-id="@wish.Id" asp-action="DeleteWishlist">Delete</a></td>
+                            </tr>
+
+
+
+                        }
+                    }
+                }
+            }
+
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" asp-action="Index" asp-controller="Home">BACK TO HOME</a>
+    <a class="btn btn-outline-primary" asp-action="VendorStock" asp-controller="Home">VENDOR STOCK IN HAND LIST</a>
+    <a class="btn btn-outline-primary" asp-action="VendorList" asp-controller="Home">VENDOR LIST</a>
+
+@*<table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="table-dark">Id</th>
+                <th scope="col" class="table-dark">Product Name</th>
+                <th scope="col" class="table-dark">Description</th>
+                <th scope="col" class="table-dark">Rating</th>
+                <th scope="col" class="table-dark">Price</th>
+                <th scope="col" class="table-dark">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @if (item.CustomerId == User.Identity.Name)
+                {
+                    <tr class="table-primary">
+                        <th scope="row">@item.ProductId</th>
+                        <td>ProductName</td>
+                        <td>@iStore.Models.Product.Id</td>
+                        <td>@item.Zipcode</td>
+                        <td>@item.DeliveryDate</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>*@

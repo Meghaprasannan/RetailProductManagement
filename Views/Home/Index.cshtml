@@ -1,0 +1,264 @@
+﻿<!--@{
+    ViewData["Title"] = "Home Page";
+}-->
+@{ Layout = "_Layout"; }
+<!doctype html>
+<html lang="en">
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Apple</title>
+
+
+
+
+
+
+    <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
+    <style>
+        .container {
+            padding-right: 0rem;
+            padding-left: 0rem;
+        }
+
+
+
+        .carousel-inner {
+            max-height: 700px;
+            max-width: 97%;
+            margin-top: 15px;
+        }
+
+
+
+        .container {
+            position: relative;
+            width: 100%;
+        }
+
+
+
+        .image {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            border-radius: 30px;
+            transition: .5s ease;
+            background-color: white;
+        }
+
+
+
+        .container:hover .overlay {
+            opacity: 0.6;
+        }
+
+
+
+        .text {
+            color: black;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+    @*1st Tile*@
+    <br> <br /><br />
+    <div class="text-center" style="background-color: black; width: 100%; border-radius: 30px; padding-left: 3%; padding-right: 0%; padding-top: 1.5%; padding-bottom: 3%; ">
+        <img class="img-fluid" src="~/AppleGIF.gif" />
+    </div>
+    @*2nd Tile*@
+    <br> <br>
+    <div class=" text-center" style="background-color: black; width: 100%; border-radius: 30px; padding-left: 3%; padding-right: 0%; padding-top: 1.5%; padding-bottom: 3%; ">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <img src="~/iPhone-13.jpg" alt="1" class="image d-block w-100" style="border-radius:30px">
+                        <div class="overlay">
+                            <div class="text"><a asp-area="" asp-controller="Phone" asp-action="Index"><h1>IPHONE 13 SERIES</h1></a></div>
+                        </div>
+                    </div>@*
+                        <img src="~/iPhone-13.jpg" class="d-block w-100" alt="1" style="border-radius:30px">*@
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <img src="~/ipad-pro-2021-apple-6.jpg" alt="1" class="image d-block w-100" style="border-radius:30px">
+                        <div class="overlay">
+                            <div class="text"><a asp-area="" asp-controller="Phone" asp-action="Index"><h1>IPAD SERIES</h1></a></div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <img src="~/iphone-12-eap-9.jpg" alt="1" class="image d-block w-100" style="border-radius:30px">
+                        <div class="overlay">
+                            <div class="text"><a asp-area="" asp-controller="Phone" asp-action="Index"><h1>IPHONE 12 SERIES</h1></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+
+
+    @*3rd Tile*@
+    <br><br>
+    <div class=" text-center" style="background-color: black; width: 100%; border-radius: 30px; padding-left: 3%; padding-right: 0%; padding-top: 1.5%; padding-bottom: 3%; ">
+        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPadMini">
+            <img src="~/images/minip.jpg" class="image d-block " style="width: 97%; border-radius: 30px" />
+        </a>
+
+
+
+    </div>
+
+
+
+    @*4th Tile*@
+    <br><br>
+    <div class=" text-center" style="background-color: black; width: 100%; border-radius: 30px; padding-left: 3%; padding-right: 3%; padding-top: 3%; padding-bottom: 3%; ">
+        <div class="watch">
+            <img src="~/images/watch.jpg" class="img-fluid" style="width: 97%; border-radius: 30px" />;
+        </div>
+    </div>
+    <br>
+    <div class="container text-center" style="background-color: whitesmoke; width: 100%; border-radius: 30px; padding-left: 3%; padding-right: 3%; padding-top: 3%; padding-bottom: 3%; ">
+
+
+
+
+        <div class="categories-area section-padding40 gray-bg">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-xl-3 col-md-6 col-sm-12">
+                        <div class="single-cat mb-50">
+                            <div class="cat-icon">
+                                <img src="~/images/Icons/services1.svg" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5>Fast & Free Delivery</h5>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xl-3 col-md-6 col-sm-12">
+                        <div class="single-cat mb-50">
+                            <div class="cat-icon">
+                                <img src="~/images/Icons/services2.svg" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5>Secure Payments</h5>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xl-3 col-md-6 col-sm-12">
+                        <div class="single-cat mb-30">
+                            <div class="cat-icon">
+                                <img src="~/images/Icons/services3.svg" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5>Warranty Policy</h5>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xl-3 col-md-6 col-sm-12">
+                        <div class="single-cat">
+                            <div class="cat-icon">
+                                <img src="~/images/Icons/services4.svg" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5>Service Center</h5>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+</body>
+
+
+
+</html>

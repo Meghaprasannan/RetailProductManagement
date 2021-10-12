@@ -1,0 +1,217 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - iStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Bootstrap.css" />
+</head>
+@*<body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">iStore</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - iStore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </body>*@
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index:100; height:50px">
+            <div class="container-fluid" style="padding-top:0;padding-bottom:0;">
+                <div class="menu-wrap">
+                    <input type="checkbox" class="toggler">
+                    <div class="hamburger" style="padding-top:7px;">
+                        <div></div>
+                    </div>
+                    <div class="menu">
+                        <div> 
+                            <ul>
+                                <li><a asp-area="" asp-controller="Home" asp-action="About">ABOUT</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="Orders">ORDERS</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="Wishlist">WISHLIST</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="ReferralAdvantages">REFERRAL ADVANTAGES</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="CustomerSupport">CUSTOMER SUPPORT</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="VendorList">VENDOR DETAILS</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="font-size:medium;padding-top:0;padding-bottom:0"><img src="~/Istore-Logo.png" height="40" ; width="140" style="top:0" /></a>
+                <button class="navbar-toggler" style="margin-right:40px" type="button" data-target="#navbarColor02" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto bg-dark" style="font-size:smaller;opacity:0.9">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="Index">SHOP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Search">SEARCH</a>
+                        </li>
+
+
+
+                    </ul>
+                    @*<form class="d-flex" style="padding-left:0px; padding-right:50px; padding-top:0px">
+                            <input class="form-control me-sm-2" type="text" placeholder="Search" style="height: 20px; border-top-left-radius: 10px; border-bottom-right-radius: 10px; width: 300px; font-size: smaller ">
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="height:23px;width:23px;border-radius:10%; padding-top:0px; padding-left:5px; padding-right:5px; margin-top:0"><img src="~/pngaaa.com-5014425.png" style="height:14px;width:14px"></button>
+                        </form>*@
+
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto d-flex cartnew bg-dark" style="font-size:smaller;opacity:0.9" >
+                    <li>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Cart"><img src="~/pngaaa.com-47059.png" style="height: 20px; width: 18px; right:10%; margin-top:8px" /></a>
+                    </li>
+                    <li>
+                        <partial name="_LoginPartial" />
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    @*MODAL BUTTON*@
+    <div class="text-right" style="position: fixed; bottom: 20px; right: 20px; background-color: white; border-radius: 10px;z-index:100">
+        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal" style="border-radius:10px">Ask Siri</button>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Siri</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <iframe allow="microphone;"
+                                width="350"
+                                height="430"
+                                src="https://console.dialogflow.com/api-client/demo/embedded/739be224-1f06-4840-86a1-4a2d1f6dd0cd">
+                        </iframe>
+                    </div>
+                    <br />
+                    <p class="text-center">1. New Arrivals 2. Customer Support <br>3. EMI + Schemes 4. Referral Advantages <br>5. Best Deals</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+
+
+    @*FOOTER*@
+    <footer class="section footer-classic context-dark bg-image" style="background: #2d3246; position:relative; bottom:0;width:100%; padding-top:2%">
+        <div class="container">
+            <div class="row row-30">
+                <div class="col-md-4 col-xl-5">
+                    <div class="pr-xl-4 text-center">
+                        <a class="brand" asp-area="" asp-controller="Home" asp-action="Index"><img class="brand-logo-light" src="~/Istore-Logo.png" alt="" width="230" height="60" srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                        <br /><br />
+                        <p>Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software, and online services. Apple is the world's largest technology company by revenue and, since January 2021, the world's most valuable company.</p>
+                        <!-- Rights-->
+                        <p class="rights"><span>©  </span><span class="copyright-year">2018</span><span> </span><span>Apple</span><span>. </span><span>All Rights Reserved.</span></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 style="color:white">Contacts</h5>
+                    <dl class="contact-list">
+                        <dt>Address:</dt>
+                        <dd>1 Apple Park Way Cupertino, California, 95014-0642 United States</dd>
+                    </dl>
+                    <dl class="contact-list">
+                        <dt>email:</dt>
+                        <dd><a href="mailto:#">bangalore_admin@apple.com</a></dd>
+                    </dl>
+                    <dl class="contact-list">
+                        <dt>phones:</dt>
+                        <dd>
+                            <a href="tel:#">https://www.apple.com/in/store</a> <span>or</span> <a href="tel:#">https://www.apple.com/in/</a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-xl-3">
+                    <h5 style="color:white">Links</h5>
+                    <ul class="nav-list">
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="ReferralAdvantages">Referral Advantages</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Orders">Orders</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Wishlist">Wishlist</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Cart">Cart</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="CustomerSupport">Customer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters social-container">
+            <div class="col"><a class="social-inner" href="https://www.facebook.com/apple/"><span class="icon mdi mdi-facebook"></span><span>Facebook</span></a></div>
+            <div class="col"><a class="social-inner" href="https://www.instagram.com/apple/?hl=en"><span class="icon mdi mdi-instagram"></span><span>instagram</span></a></div>
+            <div class="col"><a class="social-inner" href="https://twitter.com/apple"><span class="icon mdi mdi-twitter"></span><span>twitter</span></a></div>
+            <div class="col"><a class="social-inner" href="https://www.youtube.com/user/Apple/videos"><span class="icon mdi mdi-youtube-play"></span><span>Youtube</span></a></div>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

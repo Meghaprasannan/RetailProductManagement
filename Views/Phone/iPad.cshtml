@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = "_Layout";
+}
+<style>
+</style>
+<br>
+<br>
+<br>
+<br>
+<div class="text-center">
+    <h1>IPAD Series</h1>
+    <br>
+
+    
+</div>
+<div style="height:1500px;background-color:white;border-radius:30px; padding-top:30px">
+    <div class="container" style="height: 600px;">
+        <div id="zoom-img-ipad" style=" width:700px; height: 460px; ">
+        </div>
+        <div class="container" style=" width:380px; height: 450px; float:left">
+            <br />
+            <h2 class="text-center">
+                IPAD
+            </h2>
+
+            <small class="text-muted text-center">Experience the new Era</small>
+            <p class="lead">
+                Apple Engineered Smartphone with<br />
+                Unrecognizable side lines with deep screen quality
+            </p>
+            <ul>
+                <li><b>RAM | ROM:</b> 6 GB | 128 GB</li>
+                <li><b>Processor:</b> A13 Bionic Chip</li>
+                <li><b>Rear Camera:</b> 10MP</li>
+                <li><b>Front Camera:</b> 1.2MP</li>
+                <li><b>Display:</b> 10.2 inchs</li>
+                <li><b>Battery:</b> 4000mAh</li>
+            </ul>
+            <br />
+            <p style="color:red">Hurry only few units left!</p>
+            <div style="float:left"><span class="badge bg-primary">Extra 2000 off</span><h3>Rs 46900</h3></div>
+            <div style="float:right">
+                @using (@Html.BeginForm("IPad", "Phone", FormMethod.Post))
+                {
+
+                <div>
+                     @Html.TextBox("Search","",new { @type="number"})
+                    <p>Enter 6 Digit ZipCode</p>
+                    <button class="btn btn-primary btn-sm" type="submit"  name="submit" value="Search" style="width:100%" pattern="[0-9]{6}">ADD TO CART</button>
+
+
+                    
+                </div>
+
+                }
+                @*<button type="button" class="btn btn-outline-primary" style="text-align:center">Buy Now</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var addZoom = function (target) {
+        // (A) FETCH CONTAINER + IMAGE
+        var container = document.getElementById(target),
+            imgsrc = container.currentStyle || window.getComputedStyle(container, false),
+            imgsrc = imgsrc.backgroundImage.slice(4, -1).replace(/"/g, ""),
+            img = new Image();
+
+        // (B) LOAD IMAGE + ATTACH ZOOM
+        img.src = imgsrc;
+        img.onload = function () {
+            var imgWidth = img.naturalWidth,
+                imgHeight = img.naturalHeight,
+                ratio = imgHeight / imgWidth,
+                percentage = ratio * 100 + '%';
+
+            // (C) ZOOM ON MOUSE MOVE
+            container.onmousemove = function (e) {
+                var boxWidth = container.clientWidth,
+                    rect = e.target.getBoundingClientRect(),
+                    xPos = e.clientX - rect.left,
+                    yPos = e.clientY - rect.top,
+                    xPercent = xPos / (boxWidth / 100) + "%",
+                    yPercent = yPos / ((boxWidth * ratio) / 100) + "%";
+
+                Object.assign(container.style, {
+                    backgroundPosition: xPercent + ' ' + yPercent,
+                    backgroundSize: imgWidth + 'px'
+                });
+            };
+
+            // (D) RESET ON MOUSE LEAVE
+            container.onmouseleave = function (e) {
+                Object.assign(container.style, {
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover'
+                });
+            };
+        }
+    };
+
+    window.addEventListener("load", function () {
+        addZoom("zoom-img-ipad");
+    });</script>

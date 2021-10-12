@@ -1,0 +1,763 @@
+﻿@{ Layout = "_Layout"; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bootstrap Product List Carousel for Ecommerce Website</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        @@media only screen and (max-width:1400px) {
+            .newone {
+                height: 5500px;
+            }
+        }
+
+        body {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        h2 {
+            color: #000;
+            font-size: 26px;
+            font-weight: 300;
+            text-align: center;
+            text-transform: uppercase;
+            position: relative;
+            padding-top: 20px;
+        }
+
+            h2 b {
+                color: #ffc000;
+            }
+
+            h2::after {
+                content: "";
+                width: 100px;
+                position: absolute;
+                margin: 0 auto;
+                height: 4px;
+                background: rgba(0, 0, 0, 0.2);
+                left: 0;
+                right: 0;
+                bottom: -20px;
+            }
+
+        .carousel {
+            margin: 50px auto;
+            padding: 0 70px;
+        }
+
+            .carousel .carousel-item {
+                min-height: 330px;
+                text-align: center;
+                overflow: hidden;
+            }
+
+                .carousel .carousel-item .img-box {
+                    height: 160px;
+                    width: 100%;
+                    position: relative;
+                }
+
+                .carousel .carousel-item img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 0;
+                    margin: 0 auto;
+                    left: 0;
+                    right: 0;
+                }
+
+                .carousel .carousel-item h4 {
+                    font-size: 18px;
+                    margin: 10px 0;
+                }
+
+                .carousel .carousel-item .btn {
+                    color: #333;
+                    border-radius: 0;
+                    font-size: 11px;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    background: none;
+                    border: 1px solid #ccc;
+                    padding: 5px 10px;
+                    margin-top: 5px;
+                    line-height: 16px;
+                }
+
+                    .carousel .carousel-item .btn:hover, .carousel .carousel-item .btn:focus {
+                        color: #fff;
+                        background: #000;
+                        border-color: #000;
+                        box-shadow: none;
+                    }
+
+                    .carousel .carousel-item .btn i {
+                        font-size: 14px;
+                        font-weight: bold;
+                        margin-left: 5px;
+                    }
+
+            .carousel .thumb-wrapper {
+                text-align: center;
+            }
+
+            .carousel .thumb-content {
+                padding: 15px;
+            }
+
+        .carousel-control-prev, .carousel-control-next {
+            height: 100px;
+            width: 40px;
+            background: none;
+            margin: auto 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+            .carousel-control-prev i, .carousel-control-next i {
+                font-size: 30px;
+                position: absolute;
+                top: 50%;
+                display: inline-block;
+                margin: -16px 0 0 0;
+                z-index: 0;
+                left: 0;
+                right: 0;
+                color: rgba(0, 0, 0, 0.8);
+                text-shadow: none;
+                font-weight: bold;
+            }
+
+            .carousel-control-prev i {
+                margin-left: -3px;
+            }
+
+            .carousel-control-next i {
+                margin-right: -3px;
+            }
+
+        .carousel .item-price {
+            font-size: 13px;
+            padding: 2px 0;
+        }
+
+            .carousel .item-price strike {
+                color: #999;
+                margin-right: 5px;
+            }
+
+            .carousel .item-price span {
+                color: #86bd57;
+                font-size: 110%;
+            }
+
+        .carousel .carousel-indicators {
+            bottom: -50px;
+        }
+
+        .carousel-indicators li, .carousel-indicators li.active {
+            width: 10px;
+            height: 10px;
+            margin: 4px;
+            border-radius: 50%;
+            border-color: transparent;
+            border: none;
+        }
+
+        .carousel-indicators li {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+            .carousel-indicators li.active {
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+        .star-rating li {
+            padding: 0;
+        }
+
+        .star-rating i {
+            font-size: 14px;
+            color: #ffc000;
+        }
+
+        .img-fluid {
+            z-index: -1 !important
+        }
+
+        h4 {
+            z-index: -10 !important
+        }
+
+        .row {
+            z-index: -1 !important
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="row" style="margin-top:50px; z-index:-10">
+            <div class="col-md-12">
+
+                <h2 style="z-index:-50">Trending Products</h2>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+                    <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for carousel items -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Ipad Air.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPadAir">Ipad Air</a>
+                                            <p class="item-price"><strike>Rs 55000</strike> <span>Rs 54900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPadAir" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Ipad Mini.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPadMini">Ipad Mini</a>
+                                            <p class="item-price"><strike>Rs 47000</strike> <span>Rs 46900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPadMini" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Ipad Pro.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPadPro">Ipad Pro</a>
+                                            <p class="item-price"><strike>Rs 72000</strike> <span>Rs 71900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPadPro" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Ipad.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPad">Ipad</a>
+                                            <p class="item-price"><strike>Rs 31000</strike> <span>Rs 30900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPad" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Iphone 12 Mini.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone12Mini">Iphone 12 Mini</a>
+                                            <p class="item-price"><strike>Rs 57000</strike> <span>Rs 56900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPhone12Mini" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Iphone 12 Pro Max.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone12ProMax">Iphone 12 Pro Max</a>
+                                            <p class="item-price"><strike>Rs 101000</strike> <span>Rs 100900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-half-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPhone12ProMax" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Iphone 12 Pro.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone12Pro">Iphone 12 Pro</a>
+                                            <p class="item-price"><strike>Rs 91000</strike> <span>Rs 90900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPhone12Pro" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Iphone 12.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone12">Iphone 12</a>
+                                            <p class="item-price"><strike>Rs 60000</strike> <span>Rs 59900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPhone12" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Iphone 13 Pro Max1.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone13ProMax">IPhone 13 Pro Max</a>
+                                            <p class="item-price"><strike>Rs.140000</strike> <span>Rs.139900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPhone13ProMax" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Iphone 13 Mini.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone13Mini">Iphone 13 Mini</a>
+                                            <p class="item-price"><strike>Rs.67000</strike> <span>Rs.65900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPhone13Mini" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Iphone 13 Pro.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone13Pro">Iphone 13 Pro</a>
+                                            <p class="item-price"><strike>Rs 120000</strike> <span>Rs 119900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-half-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPhone13Pro" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="thumb-wrapper">
+                                        <div class="img-box">
+                                            <img src="~/Phones/Iphone 13.jpg" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone13">Iphone 13</a>
+                                            <p class="item-price"><strike>Rs 70000</strike> <span>Rs 69900</span></p>
+                                            <div class="star-rating">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                </ul>
+                                            </div>
+                                            <a asp-area="" asp-controller="Phone" asp-action="iPhone13" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Carousel controls -->
+                    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                        <img src="~/lessThan.png" style="height:10px; width:10px" />
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                        <img src="~/greaterThan.png" style="height:10px; width:10px" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+
+    <div class="container" style="border-top:2px;background-color: black; width: 100%; border-radius: 30px; height: 100%; padding-left: 3%; padding-right: 3%; padding-top: 2%; padding-bottom: 3%; ">
+        <h2 style="color:white">IPHONE 11 Series</h2>
+        <br /><br />
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius:20px;">
+
+                    <div class="card-body" style="width: 100%;height:400px">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone11"><img src="~/Phones/Iphone 11.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone11">IPHONE 11</a>
+                        <p class="item-price"><strike>Rs 50000</strike> <span style="color:limegreen">Rs 49900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone11" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius: 20px; ">
+
+                    <div class="card-body" style="width: 100%; height: 400px">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone11ProMax"><img src="~/Phones/Iphone 11 Pro Max.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone11ProMax">IPHONE 11 Pro MAX</a>
+                        <p class="item-price"><strike>Rs 66000</strike> <span style="color:limegreen">Rs 65900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone11ProMax" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius: 20px; ">
+
+                    <div class="card-body" style="width: 100%; height: 400px ">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone11Pro"><img src="~/Phones/Iphone 11 Pro.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone11Pro">IPHONE 11 Pro </a>
+                        <p class="item-price"><strike>Rs 56900</strike> <span style="color:limegreen">Rs 55900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone11Pro" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    @* <div class="text-center" style="height: 500px; border-top:2px ">*@
+    <div class="container" style="border-top:2px; width: 100%; border-radius: 30px; height: 100%; padding-left: 3%; padding-right: 3%; padding-top: 2%; padding-bottom: 3%; ">
+        <h2>IPHONE X Series</h2>
+        <br /><br />
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius:20px" ;>
+
+                    <div class="card-body" style="width: 100%; height: 400px">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneX"><img src="~/Phones/IphoneX.jfif" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhoneX">IPHONE X</a>
+                        <p class="item-price"><strike>Rs 53000</strike> <span style="color:limegreen">Rs 52900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneX" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius: 20px;  ">
+
+                    <div class="card-body" style="width: 100%; height: 400px">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneXSMax"><img src="~/Phones/Iphone XS Max.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhoneXSMax">IPHONE XS Max</a>
+                        <p class="item-price"><strike>Rs 56000</strike> <span style="color:limegreen">Rs 55900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneXSMax" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius: 20px;  ">
+
+                    <div class="card-body" style="width: 100%; height: 400px ">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneXS"><img src="~/Phones/Iphone XS.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhoneXS">IPHONE XS</a>
+                        <p class="item-price"><strike>Rs 50000</strike> <span style="color:limegreen">Rs 49900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneXS" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <br />
+    <br />
+
+    <div class="container" style="border-top:2px;background-color:black; width: 100%; border-radius: 30px; height: 100%; padding-left: 3%; padding-right: 3%; padding-top: 2%; padding-bottom: 3%; ">
+
+        <h2 style="color:white">Other Products in the Series</h2>
+        <br /><br />
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius:20px" ;>
+
+                    <div class="card-body" style="width: 100%; height: 400px">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneXR"><img src="~/Phones/Iphone XR.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhoneXR">IPHONE XR</a>
+                        <p class="item-price"><strike>Rs 46000</strike> <span style="color:limegreen">Rs 45900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneXR" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius:20px" ;>
+
+                    <div class="card-body" style="width: 100%; height: 400px">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone8Plus"><img src="~/Phones/Iphone 8 plus.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone8Plus">IPHONE 8 Plus</a>
+                        <p class="item-price"><strike>Rs 41000</strike> <span style="color:limegreen">Rs 40900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone8Plus" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius:20px" ;>
+
+                    <div class="card-body" style="width: 100%; height: 400px ">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone8"><img src="~/Phones/Iphone 8.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone8">IPHONE 8</a>
+                        <p class="item-price"><strike>Rs 39000</strike> <span style="color:limegreen">Rs 38900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone8" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+    <br />
+    <br />
+
+    <div class="container" style="border-top:2px; width: 100%; border-radius: 30px; height: 100%; padding-left: 3%; padding-right: 3%; padding-top: 2%; padding-bottom: 3%; ">
+
+        <h2>Our All Time Favourites</h2>
+        <br /><br />
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius:20px" ;>
+                    <div class="card-body" style="width: 100%; height: 400px">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneSE"><img src="~/Phones/Iphone SE.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhoneSE">IPHONE SE</a>
+                        <p class="item-price"><strike>Rs 40000</strike> <span style="color:limegreen">Rs 39900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhoneSE" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius:20px" ;>
+                    <div class="card-body" style="width: 100%; height: 400px">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone7Plus"><img src="~/Phones/Iphone 7 plus.jpg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone7Plus">IPHONE 7 Plus</a>
+                        <p class="item-price"><strike>Rs 36000</strike> <span style="color:limegreen">Rs 35900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone7Plus" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-warning mb-3 text-center" style="max-width: 20rem; border-radius:20px" ;>
+                    <div class="card-body" style="width: 100%; height: 400px ">
+                        <br />
+                        @*
+                            <h4 class="card-title"></h4>*@
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone7"><img src="~/Phones/Iphone 7.jpeg" height="170" width="170" /></a>
+                        <br />
+                        <br />
+                        <a class="nav-link" asp-area="" asp-controller="Phone" asp-action="iPhone7">IPHONE </a>
+                        <p class="item-price"><strike>Rs 34000</strike> <span style="color:limegreen">Rs 33900</span></p>
+                        <a asp-area="" asp-controller="Phone" asp-action="iPhone7" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    <br />
+    <br />
+
+
+</body>
+</html>

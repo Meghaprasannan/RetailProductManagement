@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model iStore.ViewModel.OverallViewModel
+@{
+    Layout = "_Layout";
+    
+}
+<style>
+
+    
+</style>
+
+
+<br />
+    <br /><br />
+    <h1>VENDOR STOCK LIST</h1>
+    <p>We are here to deliver you Bag of Joy!</p>
+    <table class="table table-hover" style="margin-top:2%;margin-bottom:500px">
+        <thead>
+            <tr>
+                <th scope="col" class="table-dark">Vendor Id</th>
+                <th scope="col" class="table-dark">Vendor Name</th>
+                <th scope="col" class="table-dark">Product Id</th>
+                <th scope="col" class="table-dark">Product Name</th>
+                <th scope="col" class="table-dark">Stock in hand</th>
+                <th scope="col" class="table-dark">Re-stocking date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stock in Model.vendorstocks)
+            {
+
+
+
+                @foreach (var vendor in Model.vendors)
+                {
+
+
+
+
+                    @if (stock.VendorID == vendor.Id)
+                    {
+                        @foreach (var product in Model.products)
+                        {
+                            @if (stock.ProductID == product.Id)
+                            {
+                                <tr class="table-primary">
+                                    <td scope="row">@stock.VendorID</td>
+                                    <td>@vendor.VendorName</td>
+                                    <td>@stock.ProductID</td>
+                                    <td>@product.Name</td>
+                                    <td>@stock.StockInHand</td>
+                                    <td>@stock.ExpectedStockReplinshmentDate</td>
+                                </tr>
+                            }
+                        }
+                    }
+
+                }
+
+
+
+
+
+
+            }
+
+
+        </tbody>
+
+    </table>
+    <p></p>
+    <a class="btn btn-primary" asp-action="Index" asp-controller="Home">BACK TO HOME</a>
+    
+    <a class="btn btn-outline-primary" asp-action="VendorList" asp-controller="Home">VENDOR LIST</a>
+    <a class="btn btn-outline-primary" asp-action="Wishlist" asp-controller="Home">WISHLIST</a>
+
+
+

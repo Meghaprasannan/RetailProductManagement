@@ -1,0 +1,165 @@
+﻿@model iStore.ViewModel.OverallViewModel
+@{
+    Layout = "_Layout";
+    double total=0;
+    int units=0;
+}
+<style>
+
+
+</style>
+
+<br />
+<div class="text-center">
+    <br /><br />
+    <h1>Cart</h1>
+        <p>Great Choice!</p>
+    <table class="table table-hover" style="margin-top:2%;margin-bottom:500px">
+        <thead>
+            <tr>
+                <th scope="col" class="table-dark">Id</th>
+                <th scope="col" class="table-dark">Product Name</th>
+                <th scope="col" class="table-dark">Description</th>
+                <th scope="col" class="table-dark">Price</th>
+                <th scope="col" class="table-dark">Zipcode</th>
+                <th scope="col" class="table-dark">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cart in Model.carts)
+            {
+
+
+                @if (cart.CustomerId == User.Identity.Name)
+                {
+                    @foreach (var product in Model.products)
+                    {
+                        @if (cart.ProductId == product.Id)
+                        {
+
+
+                            <tr class="table-primary">
+                                <td scope="row">@product.Id</td>
+                                <th><a class="nav-link" asp-action="@product.Name" asp-controller="Phone"> @product.Name</a></th>
+                                <td>@product.Description</td>
+                                <th style="color:green">@product.Price</th>
+                                <th>@cart.Zipcode</th>
+                                <td><a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="Home" asp-route-id="@cart.Id" asp-action="DeleteCart">Delete</a></td>
+                            </tr>
+
+                            @if (true)
+                            {
+                                total = total + product.Price;
+                                units = units + 1;
+                            
+                        }
+
+
+                    }
+                }
+            }
+            }
+
+        </tbody>
+    </table>
+
+
+</div>
+      <div class="text-center" style="border:2px solid black; border-radius:30px">
+          <br />
+          <h1>ORDER SUMMARY</h1>
+          <br />
+          <div class="text-left" style="margin-left: 20%;margin-right:20%; border: 2px solid black; border-radius: 20px">
+              <ul>
+                  <li>
+                      <h4>Total Products &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: @units</h4>
+                  </li>
+                  <li>
+                      <h4>Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: @total Rs</h4>
+                  </li>
+                  <li>
+                      @if (Model.carts.Count() >0) { total = total + 150; }
+                      <h4>Delivery Charges &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 150 Rs</h4>
+                  </li>
+                  <li>
+                      <h4>Total Before Discount : @total Rs</h4>
+                  </li>
+
+                  @*<li>
+
+                </li>*@
+
+              </ul>
+
+
+          </div>
+          <br />
+          <h4 style="color:forestgreen">Discount : 10%</h4>
+
+          @if (true) { total = total - total * 0.1; }
+          <h2>GRAND TOTAL : @total Rs </h2>
+
+          <br />
+          
+          <a class="btn btn-primary" asp-controller="Home" asp-action="CheckoutPage" style="width:60%;border-radius:15px">CHECK OUT</a>
+          <br /><br />
+      </div>
+
+
+      
+
+@*Modal*@
+      <!--<div id="myModal" class="modal fade" role="dialog" style="background-color:black">
+          <div class="modal-dialog text-center" >-->
+
+              <!-- Modal content-->
+              <!--<div class="modal-content">
+                  <div class="modal-header text-center" >
+                      <h4 class="modal-title">ORDER STATUS</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                  </div>
+                  <div class="modal-body">
+                      <div class="text-center">
+                          
+                          <img style="height:350px;width:400px" src="~/Delevery.gif"/>
+
+                      </div>
+                      <br />
+                      <h3 style="color:green">Your Order has been confirmed!</h3>
+                  </div>
+                  <div class="modal-footer">
+                      <a type="button" class="btn btn-primary"  asp-controller="Home" asp-action="Index">Return To Home</a>
+                  </div>
+              </div>
+
+          </div>
+      </div>-->
+
+@*<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col" class="table-dark">Id</th>
+            <th scope="col" class="table-dark">Product Name</th>
+            <th scope="col" class="table-dark">Description</th>
+            <th scope="col" class="table-dark">Rating</th>
+            <th scope="col" class="table-dark">Price</th>
+            <th scope="col" class="table-dark">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (item.CustomerId == User.Identity.Name)
+            {
+                <tr class="table-primary">
+                    <th scope="row">@item.ProductId</th>
+                    <td>ProductName</td>
+                    <td>@iStore.Models.Product.Id</td>
+                    <td>@item.Zipcode</td>
+                    <td>@item.DeliveryDate</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>*@
